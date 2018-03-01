@@ -139,6 +139,8 @@ script:
   - ./waf build ${J}
   - ./build/release/bin/cquery --ci --log-all-to-stderr --test-unit
   - ./build/release/bin/cquery --ci --log-all-to-stderr --test-index
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email: false

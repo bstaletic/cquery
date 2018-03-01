@@ -172,6 +172,10 @@ def configure(ctx):
         # Otherwise (void)write(...) => -Werror=unused-result
         cxxflags.append('-Wno-unused-result')
 
+    # Make sure the build is ran on travis
+    if ctx.env.TRAVIS_OS_NAME:
+      cxxflags.append('--coverage')
+
     if all(not x.startswith('-std=') for x in ctx.env.CXXFLAGS):
       cxxflags.append('-std=c++14')
 
